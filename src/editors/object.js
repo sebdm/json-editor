@@ -184,6 +184,8 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
           schema.allOf.push(this.schema.patternProperties[i]);
         }
       }
+    }  else if (this.schema.additionalProperties) {
+        schema = this.schema.additionalProperties;
     }
     
     return schema;
@@ -510,7 +512,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
     else this.showEditJSON();
   },
   insertPropertyControlUsingPropertyOrder: function (property, control, container) {
-    var propertyOrder = this.schema.properties[property].propertyOrder;
+    var propertyOrder = this.schema.properties[property] && this.schema.properties[property].propertyOrder;
     if (typeof propertyOrder !== "number") propertyOrder = 1000;
     control.propertyOrder = propertyOrder;
 
@@ -533,7 +535,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
     checkbox = self.theme.getCheckbox();
     checkbox.style.width = 'auto';
 
-    labelText = this.schema.properties[key].title ? this.schema.properties[key].title : key;
+    labelText = this.schema.properties[key] && this.schema.properties[key].title ? this.schema.properties[key].title : key;
     label = self.theme.getCheckboxLabel(labelText);
 
     control = self.theme.getFormControl(label,checkbox);
