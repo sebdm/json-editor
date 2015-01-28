@@ -60,6 +60,7 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
     
     if(this.input_type === 'textarea') num = 6;
     else if(['text','email'].indexOf(this.input_type) >= 0) num = 4;
+    else if(this.input_type === 'html') num = 12;
     else num = 2;
     
     return Math.min(12,Math.max(min,num));
