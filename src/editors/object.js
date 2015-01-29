@@ -788,7 +788,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
     // First, set the values for all of the defined properties
     $each(this.cached_editors, function(i,editor) {
       // Value explicitly set
-      if((!initial || self.isRequired(editor)) && typeof value[i] !== "undefined") {
+      if(self.isRequired(editor) && typeof value[i] !== "undefined") {
         self.addObjectProperty(i);
         editor.setValue(value[i],initial);
       }
