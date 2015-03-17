@@ -788,17 +788,17 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
     // First, set the values for all of the defined properties
     $each(this.cached_editors, function(i,editor) {
       // Value explicitly set
-      if(self.isRequired(editor) && typeof value[i] !== "undefined") {
+      if(self.isRequired(editor) && value[i] != null) {
         self.addObjectProperty(i);
         editor.setValue(value[i],initial);
       }
-      // Otherwise, remove value unless this is the initial set or it's required
-      else if(value[i] !== "undefined" && !self.isRequired(editor)) {  /*!initial && */
+      //
+      else if(value[i] == null && !self.isRequired(editor)) {  /*!initial && */
         self.removeObjectProperty(i);
       }
       // Otherwise, set the value to the default
       else {
-        editor.setValue(editor.getDefault(),initial);
+        editor.setValue(editor.getDefault(), initial);
       }
     });
 
